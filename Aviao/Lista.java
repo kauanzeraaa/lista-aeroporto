@@ -166,9 +166,9 @@ public class Lista <X> {
      * @throws Exception se o índice for inválido ou se a lista estiver vazia
      */
     public X getElemento(int i) throws Exception {
-        if(i <= 0 || i > this.getQuantidade()) throw new Exception("índice inválido");
+        if(i < 0 || i > this.getQuantidade()) throw new Exception("índice inválido");
         No ret = this.primeiro;       
-        for(int a = 1; a<i; a++) {
+        for(int a = 1; a<=i; a++) {
             ret = ret.getProx();
         }
         return ret.getInfo();

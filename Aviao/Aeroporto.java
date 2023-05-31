@@ -30,10 +30,10 @@
     }
 
     /**
-    * Adiciona um voo à lista de voos do aeroporto.
-    *
-    * @param voo o voo a ser adicionado
-    * @throws Exception se ocorrer um erro ao adicionar o voo
+     * Adiciona um voo à lista de voos do aeroporto.
+     *
+     * @param voo o voo a ser adicionado
+     * @throws Exception se ocorrer um erro ao adicionar o voo
     */
     public void addVoo(Voo v) throws Exception {
        this.voos.guardeUmItemNoFinal(v);
@@ -47,6 +47,22 @@
     */ 
     public void removeVooIndicado(Voo v) throws Exception {
         this.voos.removaItemIndicado(v);;
+    }
+
+    /**
+     * Retorna um objeto Voo com base no ID fornecido.
+     *
+     * @param id o ID do voo a ser buscado
+     * @return o objeto Voo correspondente ao ID fornecido
+     * @throws Exception se o código do voo for nulo ou se o voo não for encontrado
+    */
+     public Voo getVooById(int id) throws Exception {
+        for(int index = 0; index < voos.getQtdLista(); index++) {
+            Voo voo = voos.getElemento(index);
+            if(voo.getCodVoo() == id)
+                return voo;
+        }
+        throw new Exception("Código do vôo nulo");
     }
     
     /**

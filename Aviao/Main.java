@@ -65,17 +65,16 @@ public class Main {
                     case "RV":
                         System.out.println("Digite o código do vôo para remoção:");
                         cv = Integer.parseInt(ler.nextLine());
-                        for (int i = 0; i < aero.length; i++) {
-                            Voo v;
-                            if (aero[i] == null) {
+                        for(int i = 0; i<aero.length; i++) {
+                            
+                            if(aero[i] == null) {
                                 System.err.println("Vôo inexistente");
                                 break;
                             }
-                            v = new Voo(i, cv); // Correção: usar o índice do aeroporto atual (i)
-                            if (aero[i].temVoo(v)) {
-                                aero[i].removeVooIndicado(v);
-                                break;
-                            }                            
+                            try {
+                                aero[i].removeVooIndicado(aero[i].getVooById(cv));
+                                break;                           
+                            } catch(Exception e) { e.printStackTrace(); }                      
                         }
                         System.out.println("\n");
                         continue;
