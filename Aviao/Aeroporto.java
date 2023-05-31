@@ -59,27 +59,56 @@
     public boolean temVoo(Voo v) throws Exception {
         return this.voos.tem(v);
     }
-
+    /**
+     * Obtém a sigla do aeroporto
+     * 
+     * @return a sigla do aeroporto
+     */
     public String getSigla() {
         return this.sigla;
     }
 
+    /**
+     * Obtém a cidade do aeroporto
+     * 
+     * @return a cidade do aeroporto
+     */
     public String getCidade(){
         return this.cidade;
     }    
 
+    /**
+     * Define a sigla do aeroporto
+     * 
+     * @param s a nova sigla do aeroporto
+     */
     public void setSigla(String s) {
         this.sigla = s;
     }
     
+    /**
+     * Define a cidade do aeroporto
+     * 
+     * @param c a nova cidade do aeroporto
+     */
     public void setCidade(String c) {
         this.cidade = c;
     }
 
+    /**
+     * Retorna uma representação em string dos voos do aeroporto
+     * 
+     * @return uma string contendo os voos do aeroporto
+     */
     public String getVoo(){
         return voos.toString();
     }
 
+    /**
+     * Retorna uma representação em string do objeto Aeroporto
+     * 
+     * @return uma string contendo a sigla, a cidade e os voos do aeroporto
+     */
     @Override
     public String toString() {
         String ret = "Sigla: "+this.sigla
@@ -92,6 +121,11 @@
         return ret;
     }
 
+    /**
+     * Retorna o código hash do objeto Aeroporto
+     * 
+     * @return o código hash do objeto
+     */
     @Override
     public int hashCode() {
         int ret = 7;
@@ -103,26 +137,48 @@
         return ret;
     }
 
+    /**
+     * Verifica se o objeto atual é igual ao objeto fornecido
+     * 
+     * @param obj o objeto a ser comparado
+     * @return true se os objetos são iguais, false caso contrário
+     */
     @Override
     public boolean equals(Object obj) {
         if(this == obj) return true;
+
         if(obj == null) return false;
+
         Aeroporto aero = (Aeroporto)obj;
+
         if(!this.sigla.equals(aero.sigla)) return false;
         if(!this.cidade.equals(aero.cidade)) return false;
         if(!this.voos.equals(aero.voos)) return false;
+
         return true;
     }
 
-    public Aeroporto(Aeroporto model) throws Exception {
-        if(model == null) throw new Exception("modelo invalido");
+    /**
+     * Método construtor de cópia que é responsável por fazer uma cópia da classe Aeroporto
+     * @param modelo objeto a ser copiado
+     * @throws Exception caso o modelo não exista
+    */
+    public Aeroporto(Aeroporto model) throws Exception 
+    {
+        if(model == null) throw new Exception("Modelo inválido");
+
         this.sigla = model.sigla;
         this.cidade = model.cidade;
         this.voos = model.voos;
     }
 
+    /**
+     * Método clone que cria e retorna a copia de Lista
+     * @return um clone da instancia
+    */
     @Override
-    public Object clone(){
+    public Object clone()
+    {
         Aeroporto ret = null;
         try{
             ret = new Aeroporto(this);
