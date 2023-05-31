@@ -85,6 +85,15 @@
     }
 
     /**
+     * Obtém os vôos
+     * 
+     * @return vôos
+     */
+    public Lista getVoos() {
+        return this.voos;
+    }
+
+    /**
      * Obtém a cidade do aeroporto
      * 
      * @return a cidade do aeroporto
@@ -200,5 +209,8 @@
             ret = new Aeroporto(this);
         }catch(Exception e){}
         return ret;
+    }
+
+    public void listarVoosPorAeroportoOrigem() {
     }
 }

@@ -9,6 +9,8 @@
  * @version 1.0
  */
 public class Voo implements Cloneable{
+    private String aeroportoDeOrigem;
+    private String cidadeDeDestino;
     private int indiceAeroDist;
     private int codVoo;
 

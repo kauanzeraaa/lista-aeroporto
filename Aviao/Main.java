@@ -23,61 +23,67 @@ public class Main {
             // System.out.println(aero[0]);            
             
             for(;;) {
-                System.out.println("Solicite uma das opções abaixo: ");
-                System.out.println("Cadastramento de um novo aeroporto(CA)");
+                System.out.println("\nSolicite uma das opções abaixo: ");
+                System.out.println("\nCadastramento de um novo aeroporto(CA)");
                 System.out.println("Cadastramento de um Vôo(CV)");
                 System.out.println("Remoção de um vôo(RV)");
                 System.out.println("Listagem de Vôos(LV)");
                 System.out.println("Sair(S)");
+                System.out.println("");
                 opcao = ler.nextLine();
                 switch(opcao.toUpperCase()){
+                    
                     //1-Cadastramento de um novo aeroporto
                     case "CA":
-                        System.out.println("Digite a sigla do aeroporto:(Ex: BSB)");
+                        System.out.println("Digite a sigla do aeroporto (Ex: BSB): ");
                         s = ler.nextLine();
-                        System.out.println("Digite a cidade do aeroporto:");
+                        System.out.println("Digite a cidade do aeroporto: ");
                         c = ler.nextLine();
                         aero[n] = new Aeroporto(s, c);
                         System.out.println(aero[n]);
                         n++;
                         System.out.println("\n");
                         continue;
+
                     //2-Cadastramento de um vôo com um determinado número entre dois aeroportos identificados pelos seus códigos;
                     case "CV":
-                        System.out.println("Digite o índice do aeroporto inicial:");
+                        System.out.println("Digite o índice do aeroporto inicial: ");
                         inicial = Integer.parseInt(ler.nextLine());
-                        System.out.println("Digite o índice do aeroporto final");
+                        System.out.println("Digite o índice do aeroporto final: ");
                         f = Integer.parseInt(ler.nextLine());
-                        System.out.println("Digite o código do vôo:");
+                        System.out.println("Digite o código do vôo: ");
                         cv = Integer.parseInt(ler.nextLine());
                         if(aero[inicial] == null) {
-                            System.err.println("Aeroporto inexistente");
+                            System.err.println("Aeroporto inexistente!");
                             break;
                         }
                         if(aero[f] == null) {
-                            System.err.println("Aeroporto inexistente");
+                            System.err.println("Aeroporto inexistente!");
                             break;
                         }
                         aero[inicial].addVoo(new Voo(f, cv));
                         System.out.println("\n");
                         continue;
+
                     //3-Remoção de um vôo indicado pelo número;
                     case "RV":
-                        System.out.println("Digite o código do vôo para remoção:");
+                        System.out.println("Digite o código do vôo para remoção: ");
                         cv = Integer.parseInt(ler.nextLine());
                         for(int i = 0; i<aero.length; i++) {
                             
                             if(aero[i] == null) {
-                                System.err.println("Vôo inexistente");
+                                System.err.println("Vôo inexistente!");
                                 break;
                             }
                             try {
                                 aero[i].removeVooIndicado(aero[i].getVooById(cv));
+                                System.out.println("\n Vôo removido!");
                                 break;                           
                             } catch(Exception e) { e.printStackTrace(); }                      
                         }
                         System.out.println("\n");
                         continue;
+
                     //4-Listagem na tela de todos os vôos (número e nome da cidade destino) que saem de um determinado aeroporto.
                     case "LV":
                         System.out.println("Digite a sigla do aeroporto para ver os seus vôos:");
@@ -96,10 +102,9 @@ public class Main {
                     
                     case "S":
                         ler.close();
-                        System.out.println("Programa encerrado");
+                        System.out.println("Programa encerrado!");
                         System.exit(0);
                 }
-
             }
         } catch (Exception e) {
             System.err.println(e.getMessage());
