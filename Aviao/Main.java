@@ -7,16 +7,17 @@ public class Main {
             
             Aeroporto[] aero = new Aeroporto[100];//quantidade de aeroportos 
             Scanner ler = new Scanner(System.in);
-            String s, c;
+            String s, no, c;
             String opcao ="";
-            int n = 0, inicial, f, cv;            
+            int n = 0, cv;  
+            String inicial, f;          
             
-            aero[0] = new Aeroporto("BSB","Brasília");
-            aero[1] = new Aeroporto("CNF","Belo Horizonte");
+            aero[0] = new Aeroporto("BSB", "Juscelino", "Brasília");
+            aero[1] = new Aeroporto("CNF", "Confins","Belo Horizonte");
             // aero[2] = new Aeroporto("GIG","Rio de Janeiro");
             // aero[3] = new Aeroporto("GRU","São Paulo");
             // aero[4] = new Aeroporto("SSA","Salvador");
-            aero[0].addVoo(new Voo(4, 107));
+            aero[0].addVoo(new Voo("CNF", 107));
             // aero[1].addVoo(new Voo(4, 214));
             // aero[1].addVoo(new Voo(2, 555));
             // aero[1].addVoo(new Voo(3, 101));
@@ -35,11 +36,13 @@ public class Main {
                     
                     //1-Cadastramento de um novo aeroporto
                     case "CA":
-                        System.out.println("Digite a sigla do aeroporto (Ex: BSB): ");
+                        System.out.println("Digite a sigla do aeroporto (Ex: CNF): ");
                         s = ler.nextLine();
-                        System.out.println("Digite a cidade do aeroporto: ");
+                        System.out.println("Digite o nome do aeroporto (Confins): ");
+                        no = ler.nextLine();
+                        System.out.println("Digite a cidade do aeroporto (Belo Horizonte): ");
                         c = ler.nextLine();
-                        aero[n] = new Aeroporto(s, c);
+                        aero[n] = new Aeroporto(s, no, c);
                         System.out.println(aero[n]);
                         n++;
                         System.out.println("\n");
@@ -48,20 +51,23 @@ public class Main {
                     //2-Cadastramento de um vôo com um determinado número entre dois aeroportos identificados pelos seus códigos;
                     case "CV":
                         System.out.println("Digite o índice do aeroporto inicial: ");
-                        inicial = Integer.parseInt(ler.nextLine());
+                        inicial = ler.nextLine();
                         System.out.println("Digite o índice do aeroporto final: ");
-                        f = Integer.parseInt(ler.nextLine());
+                        f = ler.nextLine();
                         System.out.println("Digite o código do vôo: ");
                         cv = Integer.parseInt(ler.nextLine());
-                        if(aero[inicial] == null) {
-                            System.err.println("Aeroporto inexistente!");
-                            break;
+                        for(int i = 0; i<aero.length; i++) {
+                            if(aero[i].getCod() == inicial) {
+                                System.err.println("Aeroporto inexistente!");
+                                break;
+                            }
+                            if(aero[i] == null) {
+                                System.err.println("Aeroporto inexistente!");
+                                break;
+                            }
+                            
+                            aero[i].addVoo(new Voo(f, cv));
                         }
-                        if(aero[f] == null) {
-                            System.err.println("Aeroporto inexistente!");
-                            break;
-                        }
-                        aero[inicial].addVoo(new Voo(f, cv));
                         System.out.println("\n");
                         continue;
 
@@ -87,12 +93,21 @@ public class Main {
                     //4-Listagem na tela de todos os vôos (número e nome da cidade destino) que saem de um determinado aeroporto.
                     case "LV":
                         System.out.println("Digite a sigla do aeroporto para ver os seus vôos:");
-                        s = ler.nextLine();
+                        s = ler.nextLine().toUpperCase();
                         for(int i = 0; i<aero.length; i++) {
                             if(aero[i] == null) {
                                 System.err.println("Aeroporto inexistente");
                             }
+                            
                             if(aero[i].getSigla().equals(s)) {
+                                // for(int index = 0; index< aero[i].getVoos().getQuantidade(); index++) {
+                                //     try {
+                                //     Voo v = (Voo) aero[i].getVoos().getElemento(index);
+                                //     System.out.println(aero[v.getIndiceAeroDist()].getCidade()+""+v.getCodVoo());
+                                //     break;
+                                //     } catch(Exception e) {}
+                                // }
+                                
                                 System.out.println(aero[i]);
                                 break;
                             }

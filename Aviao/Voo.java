@@ -9,9 +9,7 @@
  * @version 1.0
  */
 public class Voo implements Cloneable{
-    private String aeroportoDeOrigem;
-    private String cidadeDeDestino;
-    private int indiceAeroDist;
+    private String indiceAeroDist;
     private int codVoo;
 
     /**
@@ -21,9 +19,11 @@ public class Voo implements Cloneable{
      * @param cV o código do voo
      * @throws Exception se o valor do código for inválido (menor ou igual a zero)
      */
-    public Voo(int iA, int cV) throws Exception{
+    public Voo(String iA, int cV) throws Exception{
+        if(iA == "" || iA == null)
+            throw new Exception("Código do aeroporto inválido");
         if(cV <= 0) 
-            throw new Exception("valores de código inválido");
+            throw new Exception("Valores de código inválido");
         this.indiceAeroDist = iA;
         this.codVoo = cV;
     }
@@ -33,7 +33,7 @@ public class Voo implements Cloneable{
      *
      * @return o índice do aeroporto de destino
      */
-    public int getIndiceAeroDist() {
+    public String getIndiceAeroDist() {
         return this.indiceAeroDist;
     }
 
@@ -50,11 +50,11 @@ public class Voo implements Cloneable{
      * Define o índice do aeroporto de destino do voo.
      *
      * @param iA o novo índice do aeroporto de destino
-     * @throws Exception se o valor do código for inválido (menor ou igual a zero)
+     * @throws Exception se o valor do código for inválido
      */
-    public void setIndiceAeroDist(int iA) throws Exception {
-        if(iA <= 0) 
-            throw new Exception("Valor de código inválido");
+    public void setIndiceAeroDist(String iA) throws Exception {
+        if(iA == "" || iA == null)
+            throw new Exception("Código do aeroporto inválido");
         this.indiceAeroDist = iA;
     }
 
@@ -110,7 +110,7 @@ public class Voo implements Cloneable{
      */
     @Override
     public String toString() {
-        return "Índice do aeroporto: "+this.indiceAeroDist+" Código vôo: "+this.codVoo;
+        return "Código do aeroporto: "+this.indiceAeroDist+" Código vôo: "+this.codVoo;
     }
 
     /**

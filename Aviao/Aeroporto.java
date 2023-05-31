@@ -10,7 +10,8 @@
  
  public class Aeroporto implements Cloneable{
 
-    private String sigla;
+    private String nome;
+    private String codigo;
     private String cidade;
     private Lista<Voo> voos;
 
@@ -21,10 +22,15 @@
      * @param c a cidade do aeroporto
      * @throws Exception se algum campo for nulo ou vazio
     */
-    public Aeroporto(String s, String c) throws Exception{
-        if(s == "" || s == null|| c == "" || c == null)
+    public Aeroporto(String cod, String n, String c) throws Exception{
+        if(n =="" || n == null)
+            throw new Exception("Nome nulo");
+        if( cod == "" || cod == null)
+            throw new Exception("Cidade Nula");
+        if(c == "" || c == null)
             throw new Exception("Algum campo nulo !!");        
-        this.sigla = s;
+        this.nome = n;
+        this.codigo = cod;
         this.cidade = c;
         this.voos = new Lista<Voo>();
     }
@@ -80,8 +86,12 @@
      * 
      * @return a sigla do aeroporto
      */
-    public String getSigla() {
-        return this.sigla;
+    public String getCod() {
+        return this.codigo;
+    }
+
+    public String getNome() {
+        return this.nome;
     }
 
     /**
@@ -98,19 +108,35 @@
      * 
      * @return a cidade do aeroporto
      */
-    public String getCidade(){
+    public String getCidade() {
         return this.cidade;
-    }    
+    }
+
+    /**
+     * Retorna uma representação em string dos voos do aeroporto
+     * 
+     * @return uma string contendo os voos do aeroporto
+     */
+    public String getVoo() {
+        return voos.toString();
+    }
 
     /**
      * Define a sigla do aeroporto
      * 
      * @param s a nova sigla do aeroporto
      */
-    public void setSigla(String s) {
-        this.sigla = s;
+    public void setNome(String n) throws Exception {
+        if(n == "" || n == null)
+            throw new Exception("Mudança inválida");
+        this.nome = n;
     }
     
+    public void setCod(String cod) throws Exception {
+        if(cod == "" || cod == null)
+            throw new Exception("Mudança inválida");
+        this.codigo = cod;
+    }
     /**
      * Define a cidade do aeroporto
      * 
@@ -121,23 +147,14 @@
     }
 
     /**
-     * Retorna uma representação em string dos voos do aeroporto
-     * 
-     * @return uma string contendo os voos do aeroporto
-     */
-    public String getVoo(){
-        return voos.toString();
-    }
-
-    /**
      * Retorna uma representação em string do objeto Aeroporto
      * 
      * @return uma string contendo a sigla, a cidade e os voos do aeroporto
      */
     @Override
     public String toString() {
-        String ret = "Sigla: "+this.sigla
-        +"; Cidade: "+this.cidade;
+        String ret = "Código: "+this.codigo
+        +" Nome: "+this.nome +"Cidade: "+this.cidade;
         if(this.voos.isVazia())
             ret+="; Não há vôos cadastrados";
         else    
@@ -154,7 +171,8 @@
     @Override
     public int hashCode() {
         int ret = 7;
-        ret = ret*23 + this.sigla.hashCode();
+        ret = ret*23 + this.nome.hashCode();
+        ret = ret*23 + this.codigo.hashCode();
         ret = ret*23 + this.cidade.hashCode();
         ret = ret*23 + this.voos.hashCode();
         
@@ -176,7 +194,8 @@
 
         Aeroporto aero = (Aeroporto)obj;
 
-        if(!this.sigla.equals(aero.sigla)) return false;
+        if(!this.nome.equals(aero.nome)) return false;
+        if(!this.codigo.equals(aero.codigo))return false;
         if(!this.cidade.equals(aero.cidade)) return false;
         if(!this.voos.equals(aero.voos)) return false;
 
@@ -192,7 +211,8 @@
     {
         if(model == null) throw new Exception("Modelo inválido");
 
-        this.sigla = model.sigla;
+        this.codigo = model.codigo;
+        this.nome = model.nome;
         this.cidade = model.cidade;
         this.voos = model.voos;
     }
@@ -209,8 +229,5 @@
             ret = new Aeroporto(this);
         }catch(Exception e){}
         return ret;
-    }
-
-    public void listarVoosPorAeroportoOrigem() {
-    }
+    }    
 }
