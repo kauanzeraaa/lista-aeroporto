@@ -7,30 +7,31 @@
       * @author Kauan Magalhães Piacente
       * @version 1.0
      */
- 
+
  public class Aeroporto implements Cloneable{
 
-    private String nome;
     private String codigo;
+    private String nome;
     private String cidade;
     private Lista<Voo> voos;
 
     /**
      * Cria um novo objeto Aeroporto com base nas informações fornecidas.
      *
-     * @param s a sigla do aeroporto
+     * @param cod codigo do aeroporto (sigla)
+     * @param n o nome do aeroporto
      * @param c a cidade do aeroporto
      * @throws Exception se algum campo for nulo ou vazio
     */
     public Aeroporto(String cod, String n, String c) throws Exception{
+        if(cod == "" || cod == null)
+            throw new Exception("Código (sigla) nula!");
         if(n =="" || n == null)
-            throw new Exception("Nome nulo");
-        if( cod == "" || cod == null)
-            throw new Exception("Cidade Nula");
+            throw new Exception("Nome nulo!");
         if(c == "" || c == null)
-            throw new Exception("Algum campo nulo !!");        
-        this.nome = n;
+            throw new Exception("Cidade nula!");        
         this.codigo = cod;
+        this.nome = n;
         this.cidade = c;
         this.voos = new Lista<Voo>();
     }
@@ -38,7 +39,7 @@
     /**
      * Adiciona um voo à lista de voos do aeroporto.
      *
-     * @param voo o voo a ser adicionado
+     * @param v o voo a ser adicionado
      * @throws Exception se ocorrer um erro ao adicionar o voo
     */
     public void addVoo(Voo v) throws Exception {
@@ -81,6 +82,7 @@
     public boolean temVoo(Voo v) throws Exception {
         return this.voos.tem(v);
     }
+    
     /**
      * Obtém a sigla do aeroporto
      * 
@@ -90,6 +92,11 @@
         return this.codigo;
     }
 
+    /**
+     * Obtém o nome do aeroporto
+     *
+     * @return nome do aeroporto
+    */
     public String getNome() {
         return this.nome;
     }
@@ -124,7 +131,18 @@
     /**
      * Define a sigla do aeroporto
      * 
-     * @param s a nova sigla do aeroporto
+     * @param cod a nova sigla do aeroporto
+     */
+    public void setCod(String cod) throws Exception {
+        if(cod == "" || cod == null)
+            throw new Exception("Mudança inválida");
+        this.codigo = cod;
+    }
+
+    /**
+     * Define a sigla do aeroporto
+     * 
+     * @param n a novo nome do aeroporto
      */
     public void setNome(String n) throws Exception {
         if(n == "" || n == null)
@@ -132,11 +150,6 @@
         this.nome = n;
     }
     
-    public void setCod(String cod) throws Exception {
-        if(cod == "" || cod == null)
-            throw new Exception("Mudança inválida");
-        this.codigo = cod;
-    }
     /**
      * Define a cidade do aeroporto
      * 
@@ -149,12 +162,12 @@
     /**
      * Retorna uma representação em string do objeto Aeroporto
      * 
-     * @return uma string contendo a sigla, a cidade e os voos do aeroporto
+     * @return uma string contendo a sigla, o nome, a cidade e os voos do aeroporto
      */
     @Override
     public String toString() {
         String ret = "Código: "+this.codigo
-        +" Nome: "+this.nome +"Cidade: "+this.cidade;
+        +"; Nome: "+this.nome +"; Cidade: "+this.cidade;
         if(this.voos.isVazia())
             ret+="; Não há vôos cadastrados";
         else    

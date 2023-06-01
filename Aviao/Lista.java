@@ -534,7 +534,7 @@ public class Lista <X> {
      * Método obrigatório hashcode que retorna um valor hash para estes objetos
      * O valor hash é usado para fins de comparação e deve ser consistente
      * @return o valor hash para estes objetos
-    */
+     */
     public int hashCode () {
         final int PRIMO = 13; // qualquer número primo serve
         
@@ -554,7 +554,7 @@ public class Lista <X> {
      * Método construtor de cópia que é responsável por fazer uma cópia da classe Lista
      * @param modelo objeto a ser copiado
      * @throws Exception caso o modelo não exista
-    */
+     */
     public Lista (Lista<X> modelo) throws Exception {
         if (modelo==null)
             throw new Exception ("Modelo ausente");
@@ -579,7 +579,7 @@ public class Lista <X> {
     /**
      * Método clone que cria e retorna a copia de Lista
      * @return um clone da instancia
-    */
+     */
     public Object clone () {
         Lista<X> ret=null;
 

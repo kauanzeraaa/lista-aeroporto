@@ -110,7 +110,7 @@ public class Voo implements Cloneable{
      */
     @Override
     public String toString() {
-        return "Código do aeroporto: "+this.indiceAeroDist+" Código vôo: "+this.codVoo;
+        return "Código do aeroporto: "+this.indiceAeroDist+", Código vôo: "+this.codVoo;
     }
 
     /**
