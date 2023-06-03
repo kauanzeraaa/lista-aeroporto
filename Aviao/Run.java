@@ -154,7 +154,7 @@ public class Run {
 
                 // 4-Listagem na tela de todos os vôos (número e nome da cidade destino) que saem de um determinado aeroporto.
                 case "LV":
-                    System.out.print("\nDigite a sigla do aeroporto : ");
+                    System.out.print("\nDigite a sigla do aeroporto: ");
                     s = ler.nextLine().toUpperCase();
                     String resp = "";
                     int index = -1;
