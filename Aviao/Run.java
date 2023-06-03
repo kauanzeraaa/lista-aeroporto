@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class Run {
     public static void runner() throws Exception{
-        Aeroporto[] aero = new Aeroporto[100];//quantidade de aeroportos 
+        Aeroporto[] aero = new Aeroporto[100];
         Scanner ler = new Scanner(System.in);
         String s, no, c;
         String opcao ="";
@@ -71,7 +71,6 @@ public class Run {
                         System.out.println("Aeroporto adicionado!");
                         n++;
                     }
-                    System.out.println("\n");
                     continue;
 
                 //2-Cadastramento de um vôo com um determinado número entre dois aeroportos identificados pelos seus códigos;
@@ -133,9 +132,6 @@ public class Run {
                             }
                         }
                     }
-                     
-                    
-                    System.out.println("\n");
                     continue;
 
                 //3-Remoção de um vôo indicado pelo número;
@@ -154,7 +150,6 @@ public class Run {
                             break;                           
                         } catch(Exception e) { }                      
                     }
-                    System.out.println("\n");
                     continue;
 
                 // 4-Listagem na tela de todos os vôos (número e nome da cidade destino) que saem de um determinado aeroporto.
