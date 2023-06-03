@@ -93,6 +93,7 @@ public class Lista <X> {
      * @param x o objeto a ser clonado
      * @return uma cópia do objeto clonado, ou null se ocorrer algum erro
      */
+    @SuppressWarnings("unchecked")
     private X meuCloneDeX (X x) {
         X ret=null;
 
