@@ -62,8 +62,10 @@ public class Lista <X> {
 
         /**
          * Define a informação do nó.
+         * 
          * @param i a informação a ser definida
          */
+        @SuppressWarnings("unused")
         public void setInfo (X i) {
             this.info = i;
         }
@@ -509,6 +511,7 @@ public class Lista <X> {
         if (this.getClass()!=obj.getClass())
             return false;
 
+        @SuppressWarnings("unchecked")
         Lista<X> lista = (Lista<X>)obj;
 
         No atualThis =this .primeiro;
@@ -584,8 +587,9 @@ public class Lista <X> {
     public Object clone () {
         Lista<X> ret=null;
 
-        try {
-            ret = new Lista (this);
+        try 
+        {
+            ret = new Lista<> (this);
         }
         catch (Exception erro) {}
         return ret;

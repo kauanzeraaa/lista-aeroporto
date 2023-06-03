@@ -106,7 +106,7 @@
      * 
      * @return vôos
      */
-    public Lista getVoos() {
+    public Lista<Voo> getVoos() {
         return this.voos;
     }
 
